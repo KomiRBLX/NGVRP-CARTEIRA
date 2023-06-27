@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NGVRP - Criador de carteira de trabalho</title>
+    <style>
+
+ h1 {
+        font-family: monospace;
+        color: white;
+      }
+
+      h3 {
+        font-family: monospace;
+        color: white;
+      }
+      
+          body {
+        background-color: #2d2d2d;
+      }
+      
+      .imagem {
+        position: relative;
+      }
+
+      .area-5, .area-2, .area-3 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 24px;
+        color: #373737;
+      }
+
+      .area-5 {
+        top: 125px;
+        left: 350px;
+      }
+
+      .area-2 {
+        top: 220px;
+        left: 450px;
+      }
+
+      .area-3 {
+        top: 12005px;
+        left: 7050px;
+      }
+
+      #gerar-imagem {
+        background-color: #4CAF50; /* cor de fundo */
+        color: white; /* cor do texto */
+        border-radius: 5px; /* bordas arredondadas */
+        padding: 10px 20px; /* espaço interno */
+        border: none; /* sem borda */
+        text-align: center; /* alinhamento de texto */
+        text-decoration: none; /* sem sublinhado */
+        display: inline-block; /* exibir como bloco */
+        font-size: 16px; /* tamanho da fonte */
+        margin: 10px; /* margem externa */
+        cursor: pointer; /* cursor de mão ao passar */
+      }
+
+
+    </style>
+  </head>
+  <body>
+
+    <h1>Criador de carteira de trabalho - NGVRP</h1>
+    <h3>Criado por: Komi_#5012</h3>
+  <div class="imagem">
+  <img src="imagem-modelo.png">
+  <div class="area-2">
+    <input type="text" id="area-2-input" placeholder="Nome">
+  </div>
+  <div class="area-3">
+    <input type="text" id="area-3-input" placeholder="" oninput="this.value = this.value.toUpperCase()">
+  </div>
+
+  <button id="gerar-imagem">Gerar Imagem</button>
+</div>
+    <script>
+      const imagemModelo = document.querySelector('.imagem img');
+      const area5Input = document.querySelector('#area-5-input');
+      const area2Input = document.querySelector('#area-2-input');
+      const area3Input = document.querySelector('#area-3-input');
+    
+      const gerarImagemBtn = document.querySelector('#gerar-imagem');
+
+      function generateRandomString() {
+        let str = '';
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const numbers = '0123456789';
+        for (let i = 0; i < 5; i++) {
+          if (i === 0) {
+            str += letters.charAt(Math.floor(Math.random() * letters.length));
+          } else {
+            str += numbers.charAt(Math.floor(Math.random() * numbers.length));
+          }
+        }
+        return str;
+      }
+
+      gerarImagemBtn.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = imagemModelo.width;
+        canvas.height = imagemModelo.height;
+        context.drawImage(imagemModelo, 0, 0);
+        context.font = '24px Tahoma';
+        context.fillStyle = '#373737';
+        context.fillText(generateRandomString(), 455, 310);
+        context.fillText(area2Input.value, 455, 240);
+        context.fillText(area3Input.value, 765, 145);
+        context.font = '18px sans-serif';
+        context.fillStyle = '#373737';
+       context.fillText(`Expedido em: ${new Date().toLocaleDateString('pt-BR')}`, 450, canvas.height -235);
+        const novaImagem = canvas.toDataURL();
+        const novaImagemElemento = document.createElement('img');
+        novaImagemElemento.src = novaImagem;
+        document.body.appendChild(novaImagemElemento);
+        
+        
+      });
+    </script>
+  </body>
+</html>

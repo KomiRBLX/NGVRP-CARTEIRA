@@ -1,0 +1,37 @@
+html {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .imagem {
+    position: relative;
+  }
+  
+  .area-1, .area-2, .area-3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .area-1 {
+    top: 100px;
+    left: 100px;
+  }
+  
+  .area-2 {
+    top: 200px;
+    left: 200px;
+  }
+  
+  .area-3 {
+    top: 300px;
+    left: 300px;
+  }
+  
+  #gerar-imagem {
+    display: block;
+    margin-top: 20px;
+  }
+  
